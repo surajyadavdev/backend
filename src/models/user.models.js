@@ -76,16 +76,31 @@ userSchema.methods.generateAccessToken = function(){
     )
 }
 
-userSchema.methods.generateRefressToken = function(){
+// userSchema.methods.generateRefressToken = function(){
+//     return jwt.sign(
+//         {
+//             _id:this._id,
+//         },
+//         process.env.REFRESS_TOKEN_SECRET,
+//         {
+//             expiresIn:process.env.REFRESS_TOKEN_EXPIRY
+//         }
+//     )
+// }
+
+
+userSchema.methods.generateRefreshToken = function(){
     return jwt.sign(
         {
-            _id:this._id,
+            _id: this._id,
+            
         },
-        process.env.REFRESS_TOKEN_SECRET,
+        process.env.REFRESH_TOKEN_SECRET,
         {
-            expiresIn:process.env.REFRESS_TOKEN_EXPIRY
+            expiresIn: process.env.REFRESH_TOKEN_EXPIRY
         }
     )
 }
+
 
 export const User = mongoose.model("User",userSchema)
